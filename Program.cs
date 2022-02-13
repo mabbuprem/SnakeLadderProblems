@@ -21,18 +21,22 @@ namespace SnakeLadderProblems
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
 
-
-            //variables
-            int diceNumber = diceRolling.diceRoll();
-            int functionNumber = diceRolling.Function();
-            //Console.WriteLine(diceNumber)
-            while (user.UserPosition < 100)
+            while (user .UserPotion < 100)
             {
 
+                //variables
+                int diceNumber = diceRolling.diceRoll();
+                int functionNumber = diceRolling.Function();
+                Console.WriteLine(diceNumber);
                 switch (functionNumber)
-            {
-                case LADDER:
-                    user.UserPosition += diceNumber;
+                {
+
+                    case LADDER:
+                        //user.UserPosition= user .UserPotion + diceNumber <=100? user.UserPosition: user.UserPosition + diceNumber;
+                        (user.UserPosition += diceNumber);
+                        {
+                            user.UserPosition += diceNumber;
+                        }
                     break;
                 case SNAKE:
                   if  (user.UserPosition += diceNumber);
@@ -44,7 +48,7 @@ namespace SnakeLadderProblems
                         user.UserPosition = 0;
                         Console.WriteLine("user position nagative");
 
-                        }
+                   }
                     break;
                 case NO_PLAY:
                     Console.WriteLine("on play");
