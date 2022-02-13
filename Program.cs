@@ -19,42 +19,53 @@ namespace SnakeLadderProblems
             const int NO_PLAY = 3;
 
             int rollyTry = 0;
+            int turnNumber = 0;
 
             DiceRolling diceRolling = new DiceRolling();
-            UserInfo user = new UserInfo();
+            UserInfo user1 = new UserInfo();
+            UserInfo user2 = new UserInfo();
 
 
-            while (user.UserPosition < 100)
+            while (diceRolling.gameEnd == false)
             {
 
                 //variables
                 int diceNumber = diceRolling.diceRoll();
                 int functionNumber = diceRolling.Function();
-                //Console.WriteLine(diceNumber)
-
+                //Console.WriteLine(diceNumber);
                 switch (functionNumber)
                 {
                     case LADDER:
                         //user .UserPosition= user .UserPosition + dicenumber <= 100? user .Userposition: user .userPosition + diceNumber; 
-                        if (user.UserPosition += diceNumber) ;
+                        if (turnNumber == 1 && user1.UserPosition + diceNumber <= 100)
                         {
-                            user.UserPosition -= diceNumber;
-                        }
-                        break;
-                    case SNAKE:
-                        if (user.UserPosition += diceNumber) ;
-                        {
-                            user.UserPosition -= diceNumber;
+                            user2.UserPosition += diceNumber;
                         }
                         else
                         {
-                            user.UserPosition = 0;
-                            Console.WriteLine("user position nagative");
-
+                            Console.WhiteLine("max limit 100");
                         }
+
                         break;
+                    case SNAKE:
+                        if (turnNumber == 1 && user1.UserPosition > diceNumber)
+                        {
+                            user1.UserPosition -= diceNumber;
+                        }
+                        else (turnNumber == 2 && user2.UserPosition < diceNumber)
+                        {
+                            user2.UserPosition -= diceNumber;
+                        }
+                        else
+                        {
+                            Console.WriteLine("nagative");
+                        }
+                        turnNumber = diceNumber.UserTurn(turnNumber);
+                        break;
+                       
                     case NO_PLAY:
                         Console.WriteLine("on play");
+                        turnNumber = diceRolling.UserTurn(turnNumber);
                         break;
                     default:
                         Console.WriteLine("defult case error");
@@ -62,7 +73,7 @@ namespace SnakeLadderProblems
 
                 }
                 rollyTry++;
-                Console.WriteLine($"position; {user.UserPosition}");
+                Console.WriteLine($"position; {user1.UserPosition} 2: {user2.UserPosition}");
                 Console.WriteLine($"on. of try: {rollyTry}");
 
             }
